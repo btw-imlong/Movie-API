@@ -6,24 +6,21 @@
     <title>Home page</title>
     <link rel="stylesheet" href="src/style/output.css" />
   </head>
-  <body>
-    <nav class="bg-black p-4 relative z-50">
-      <div
-        class="container mx-auto flex md:flex-row flex-row-reverse justify-between items-center"
-      >
+  <body class="bg-gray-900">
+    <!-- Navigation Bar -->
+    <nav class="bg-black p-4 z-50 sticky">
+      <div class="container mx-auto flex flex-row justify-between items-center">
         <!-- Logo -->
         <a href="#" class="text-xl font-bold">
           <img src="src/asset/img/logo.png" alt="" class="max-w-[50%]" />
         </a>
 
         <!-- Hamburger Menu (Mobile) -->
-
         <button id="menu-toggle" class="md:hidden text-white text-2xl pr-4">
           ☰
         </button>
 
         <!-- Menu Items -->
-
         <div class="flex md:flex-row flex-row-reverse">
           <ul
             id="menu"
@@ -64,10 +61,10 @@
                 >Movies</a
               >
             </li>
-
-            <!-- Search Input (Inside Menu) -->
           </ul>
         </div>
+
+        <!-- Search Input -->
         <input
           type="text"
           id="search"
@@ -77,7 +74,7 @@
       </div>
     </nav>
 
-    <!-- Movie Results -->
+    <!-- Movie Search Results -->
     <div
       id="results"
       class="absolute top-24 left-0 w-full bg-gray-900 p-4 hidden z-30"
@@ -86,8 +83,9 @@
         class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       ></div>
     </div>
+
+    <!-- Background Video Section -->
     <div class="relative h-screen w-full bg-black">
-      <!-- Background Video -->
       <video
         autoplay
         muted
@@ -101,18 +99,15 @@
         Your browser does not support the video tag.
       </video>
 
-      <!-- Gradient Overlay -->
       <div
         class="absolute inset-0 bg-gradient-to-r from-black to-transparent"
       ></div>
-
-      <!-- Navigation Bar -->
 
       <!-- Hero Section -->
       <div class="absolute top-1/3 left-10 text-white">
         <h1 class="text-5xl font-bold">Go ahead, stream free</h1>
         <p class="mt-4 text-lg max-w-lg">
-          With Plex you can watch over 20,000 free movies and shows, plus Live
+          With Plex, you can watch over 20,000 free movies and shows, plus Live
           TV on almost any device. What are you waiting for?
         </p>
         <button
@@ -122,6 +117,13 @@
         </button>
       </div>
     </div>
+
+    <!-- Now Playing Movies -->
+    <div class="container mx-auto p-5">
+      <h1 class="text-3xl font-bold mb-5 text-white">Living Movies</h1>
+      <div id="movies" class="grid md:grid-cols-6 grid-cols-3 gap-4"></div>
+    </div>
+
     <script src="src/script/main.js" defer></script>
   </body>
 </html>

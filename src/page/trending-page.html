@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Now Playing Movies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../style/output.css" />
+  </head>
+  <body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-5">
+      <h1 class="text-3xl font-bold mb-5">Living Movies</h1>
+      <div id="movies" class="grid grid-cols-6 gap-4"></div>
+    </div>
+
+    <script>
+      const apiKey = "38ce8edf86ce46dd2cc6a4d56763297a";
+      const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`;
+
+      async function fetchMovies() {
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          const moviesContainer = document.getElementById("movies");
+          moviesContainer.innerHTML = "";
+
+          data.results.slice(0, 12).forEach((movie) => {
+            const movieElement = document.createElement("div");
+            movieElement.classList.add("rounded-md");
+
+            movieElement.innerHTML = `
+              <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
+                   alt="${movie.title}" 
+                   class="rounded-md h-[20vh] w-full object-cover mb-2" />
+              <h2 class="text-lg font-semibold line-clamp-1">${movie.title}</h2>
+              <p class="text-sm">${movie.vote_count} votes (${
+              movie.release_date.split("-")[0]
+            })</p>
+            `;
+
+            moviesContainer.appendChild(movieElement);
+          });
+        } catch (error) {
+          console.error("Error fetching movies:", error);
+        }
+      }
+
+      // Call the function to load movies
+      fetchMovies();
+    </script>
+  </body>
+</html>
