@@ -2,8 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=S, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Living Movies</title>
+    <link rel="stylesheet" href="../style/output.css" />
   </head>
-  <body></body>
+  <body class="bg-gray-900 text-white">
+    <nav class="bg-black p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="movie.html" class="text-xl font-bold">Home</a>
+      </div>
+    </nav>
+
+    <div class="container mx-auto p-5">
+      <h1 class="text-3xl font-bold mb-5">Living Movies</h1>
+      <div
+        id="movies"
+        class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      ></div>
+    </div>
+
+    <script>
+      const API_KEY = "38ce8edf86ce46dd2cc6a4d56763297a";
+      const moviesContainer = document.getElementById("movies");
+
+      async function fetchLivingMovies() {
+        try {
+          const response = await fetch(
+            `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+          );
+          const data = await response.json();
+
+          moviesContainer.innerHTML = data.results
+            .map(
+              (movie) => `
+      <a href="watch-movie.html?id=${movie.id}" class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" class="w-full h-64 object-cover rounded-md">
+        <h2 class="mt-2 font-bold">${movie.title}</h2>
+        <p class="text-sm text-gray-400">${movie.release_date}</p>
+      </a>
+    `
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching Living Movies:", error);
+        }
+      }
+
+      // Fetch movies on page load
+      fetchLivingMovies();
+    </script>
+  </body>
 </html>
