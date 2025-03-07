@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/output.css" />
+  </head>
+  <body>
+    <div class="relative h-screen w-full bg-black">
+      <!-- Background Video -->
+      <video
+        autoplay
+        muted
+        loop
+        class="absolute inset-0 w-full h-full object-cover"
+      >
+        <source
+          src="../asset/Video/home_hero_background_2024.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Gradient Overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-black to-transparent"
+      ></div>
+
+      <!-- Navigation Bar -->
+
+      <!-- Hero Section -->
+      <div class="absolute top-1/3 left-10 text-white">
+        <h1 class="text-5xl font-bold">Go ahead, stream free</h1>
+        <p class="mt-4 text-lg max-w-lg">
+          With Plex you can watch over 20,000 free movies and shows, plus Live
+          TV on almost any device. What are you waiting for?
+        </p>
+        <button
+          class="mt-6 bg-yellow-500 px-6 py-3 text-black font-bold rounded-full"
+        >
+          <a href="#">Join Now</a>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

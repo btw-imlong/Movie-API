@@ -3,8 +3,141 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home page</title>
     <link rel="stylesheet" href="src/style/output.css" />
   </head>
-  <body></body>
+  <body class="bg-gray-900">
+    <!-- Navigation Bar -->
+    <nav class="bg-black p-4 z-50 sticky">
+      <div class="container mx-auto flex flex-row justify-between items-center">
+        <!-- Logo -->
+        <a href="#" class="text-xl font-bold">
+          <img src="src/asset/img/logo.png" alt="" class="max-w-[50%]" />
+        </a>
+
+        <!-- Hamburger Menu (Mobile) -->
+        <button id="menu-toggle" class="md:hidden text-white text-2xl pr-4">
+          ☰
+        </button>
+
+        <!-- Menu Items -->
+        <div class="flex md:flex-row flex-row-reverse">
+          <ul
+            id="menu"
+            class="hidden md:flex text-orange-500 md:space-x-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent p-4 md:p-0 flex-col md:flex-row font-bold"
+          >
+            <li>
+              <a
+                href="#"
+                class="block p-2 underline decoration-2 underline-offset-[20px]"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                >Blog</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                >FAQ</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                >Movies</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Search Input -->
+        <input
+          type="text"
+          id="search"
+          placeholder="Search movies..."
+          class="p-2 text-white rounded-md border border-gray-500"
+        />
+      </div>
+    </nav>
+
+    <!-- Movie Search Results -->
+    <div
+      id="results"
+      class="absolute top-24 left-0 w-full bg-gray-900 p-4 hidden z-30"
+    >
+      <div
+        class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      ></div>
+    </div>
+
+    <!-- Background Video Section -->
+    <div class="relative h-screen w-full bg-black">
+      <video
+        autoplay
+        muted
+        loop
+        class="absolute inset-0 w-full h-full object-cover"
+      >
+        <source
+          src="src/asset/Video/home_hero_background_2024.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-black to-transparent"
+      ></div>
+
+      <!-- Hero Section -->
+      <div class="absolute top-1/3 left-10 text-white">
+        <h1 class="text-5xl font-bold">Go ahead, stream free</h1>
+        <p class="mt-4 text-lg max-w-lg">
+          With Plex, you can watch over 20,000 free movies and shows, plus Live
+          TV on almost any device. What are you waiting for?
+        </p>
+        <button
+          class="mt-6 bg-yellow-500 px-6 py-3 text-black font-bold rounded-full"
+        >
+          <a href="#">Join Now</a>
+        </button>
+      </div>
+    </div>
+
+    <!-- Now Playing Movies -->
+    <div class="container mx-auto p-5">
+      <h1 class="text-3xl font-bold mb-5 text-white">Living Movies</h1>
+      <div id="movies" class="grid md:grid-cols-6 grid-cols-2 gap-4"></div>
+    </div>
+    <div class="container mx-auto p-4">
+      <h1 class="text-2xl font-bold mb-4 text-white">Trending Movies</h1>
+      <div
+        id="movie-container2"
+        class="grid md:grid-cols-6 grid-cols-2 gap-4"
+      ></div>
+    </div>
+    <div class="container mx-auto p-4">
+      <h1 class="text-2xl font-bold mb-4 text-white">Up Coming Movies</h1>
+      <div
+        id="upcoming-movie"
+        class="grid md:grid-cols-6 grid-cols-2 gap-4"
+      ></div>
+    </div>
+
+    <script src="src/script/main.js" defer></script>
+  </body>
 </html>

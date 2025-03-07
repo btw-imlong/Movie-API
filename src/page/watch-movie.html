@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <!-- Back Button -->
+    <a href="../../index.html" class="p-4 block text-gray-400 hover:text-white"
+      >⬅ Back to Search</a
+    >
+
+    <!-- Movie Details Container -->
+    <div class="container mx-auto p-6">
+      <div id="movie-container" class="flex flex-col md:flex-row gap-6"></div>
+    </div>
+
+    <script>
+      const API_KEY = "38ce8edf86ce46dd2cc6a4d56763297a"; // Replace with your TMDB API key
+      const urlParams = new URLSearchParams(window.location.search);
+      const movieId = urlParams.get("id");
+      const movieContainer = document.getElementById("movie-container");
+
+      if (movieId) {
+        fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
+        )
+          .then((response) => response.json())
+          .then((movie) => {
+            movieContainer.innerHTML = `
+              <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
+                   alt="${movie.title}" 
+                   class="w-full md:w-1/3 object-cover rounded-lg">
+
+              <div class="flex flex-col justify-center">
+                <h1 class="text-3xl font-bold  ">${movie.title}</h1>
+                <p class="text-gray-400">${movie.release_date}</p>
+                <p class="mt-4">${movie.overview}</p>
+              </div>
+            `;
+          })
+          .catch((error) =>
+            console.error("Error fetching movie details:", error)
+          );
+      } else {
+        movieContainer.innerHTML = `<p class="text-center text-gray-400">Movie not found.</p>`;
+      }
+    </script>
+  </body>
+</html>
