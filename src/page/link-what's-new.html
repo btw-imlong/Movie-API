@@ -50,93 +50,44 @@
         won’t be a test later.
       </p>
     </div>
-    <div class="flex justify-evenly p-5 gap-0.5 max-sm:p-5 flex-wrap mx-auto">
-      <div class="w-[180px] h-[310px]">
-        <a
-          href="https://watch.plex.tv/watch/video?uri=provider%3A%2F%2Ftv.plex.provider.discover%2Flibrary%2Fmetadata%2F5d776c817a53e9001e744a8e%2Fextras%2F67c189d54cf0e8b55b0c24fd"
-        >
-          <div class="w-[100%] h-[250px]">
-            <img
-              class="h-full w-full object-cover"
-              src="/src/asset/shake5.png"
-              alt=""
-            />
-          </div>
-          <p class="text-white text-sm font-bold py-1">Shrek 5</p>
-        </a>
-        <p class="text-white text-sm">8M view</p>
-      </div>
-      <div class="w-[180px] h-[310px]">
-        <a
-          href="https://watch.plex.tv/watch/video?uri=provider%3A%2F%2Ftv.plex.provider.discover%2Flibrary%2Fmetadata%2F64d57c2ea5e751c7bafbc457%2Fextras%2F669604097c582a501f6a390f"
-        >
-          <div class="w-[100%] h-[250px]">
-            <img class="h-full w-full" src="/src/asset/arora.png" alt="" />
-          </div>
-          <p class="text-white text-sm font-bold py-1">Arora</p></a
-        >
-        <p class="text-white text-sm">900K view</p>
-      </div>
-      <div class="w-[180px] h-[310px]">
-        <a
-          href="https://watch.plex.tv/watch/video?uri=provider%3A%2F%2Ftv.plex.provider.discover%2Flibrary%2Fmetadata%2F65c6107cf86bc5a20e095776%2Fextras%2F66b91c69c6470699692d216ehttps://watch.plex.tv/watch/video?uri=provider%3A%2F%2Ftv.plex.provider.discover%2Flibrary%2Fmetadata%2F65c6107cf86bc5a20e095776%2Fextras%2F66b91c69c6470699692d216e"
-          ><div class="w-[100%] h-[250px]">
-            <img
-              class="h-full w-full object-cover"
-              src="/src/asset/maona.png"
-              alt=""
-            />
-          </div>
-          <p class="text-white text-sm font-bold py-1"></p
-        ></a>
-        <p class="text-white text-sm">200K view</p>
-      </div>
-      <div class="w-[180px] h-[310px]">
-        <a
-          href="https://watch.plex.tv/watch/video?uri=provider%3A%2F%2Ftv.plex.provider.discover%2Flibrary%2Fmetadata%2F5ecb69693f1fbf0040f4fc9a%2Fextras%2F67ccc753ac79dbb341bd1218"
-          ><div class="w-[100%] h-[250px]">
-            <img
-              class="h-full w-full object-cover"
-              src="/src/asset/magic.png"
-              alt=""
-            />
-          </div>
-          <p class="text-white text-sm font-bold py-1">
-            The Academy of Magic
-          </p></a
-        >
-        <p class="text-white text-sm">5M view</p>
-      </div>
-      <div class="w-[180px] h-[310px]">
-        <a
-          href="https://watch.plex.tv/watch/video?uri=provider%3A%2F%2Ftv.plex.provider.discover%2Flibrary%2Fmetadata%2F5f74326fdc22070041355584%2Fextras%2F66b7f556c6470699690a88b8"
-          ><div class="w-[100%] h-[250px]">
-            <img
-              class="h-full w-full object-cover"
-              src="/src/asset/lion.png"
-              alt=""
-            />
-          </div>
-          <p class="text-white text-sm font-bold py-1">
-            Mufasa: The Lion King
-          </p></a
-        >
-        <p class="text-white text-sm">0.5M view</p>
-      </div>
-      <div class="w-[180px] h-[310px]">
-        <a
-          href="https://watch.plex.tv/watch/video?uri=provider%3A%2F%2Ftv.plex.provider.discover%2Flibrary%2Fmetadata%2F5d776d4f7a53e9001e756f41%2Fextras%2F6750756a65e72403b64f94b1"
-          ><div class="w-[100%] h-[250px]">
-            <img
-              class="h-full w-full object-cover"
-              src="/src/asset/snow white.png"
-              alt=""
-            />
-          </div>
-          <p class="text-white text-sm font-bold py-1">Snow White</p></a
-        >
-        <p class="text-white text-sm">1M view</p>
-      </div>
+    <div
+      class="max-w-full p-5 overflow-x-auto"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
+      <div id="movies" class="flex space-x-6 w-max"></div>
     </div>
+    <script>
+      const API_KEY = "38ce8edf86ce46dd2cc6a4d56763297a";
+      fetch(
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const recent = document.getElementById("movies");
+          recent.innerHTML = "";
+
+          data.results.forEach((popmovie) => {
+            const popCard = document.createElement("div");
+            popCard.classList.add("rounded-md");
+
+            const posterPop = popmovie.poster_path
+              ? `https://image.tmdb.org/t/p/w500${popmovie.poster_path}`
+              : "/src/asset/fallback.png"; // Add your own fallback image path
+
+            popCard.innerHTML = `
+              <div class="md:w-[15vw] w-40 sm:w-30">
+               <a href="../page/watch-movie.html?id=${popmovie.id}" class="block">
+                   <img src="${posterPop}" alt="${popmovie.title}" class="w-full rounded-md h-64 object-cover">
+
+            <div class="p-4 w-full">
+              <h2 class="text-lg text-white font-bold line-clamp-1">${popmovie.title}</h2>
+              <p class="text-sm text-gray-100">Rating: ${popmovie.vote_average}</p>
+            </div>
+              </div>`;
+            recent.appendChild(popCard);
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
   </body>
 </html>
