@@ -7,12 +7,87 @@
     <link rel="stylesheet" href="/src/style/output.css" />
   </head>
   <body class="font-Libre Caslon Text bg-[#2D2C2C]">
+    <nav class="bg-black p-4 z-50 sticky">
+      <div class="container mx-auto flex flex-row justify-between items-center">
+        <!-- Logo -->
+        <a href="#" class="text-xl font-bold">
+          <img src="../asset/img/logo.png" alt="" class="max-w-[50%]" />
+        </a>
+
+        <!-- Hamburger Menu (Mobile) -->
+        <button id="menu-toggle" class="md:hidden text-white text-2xl pr-4">
+          ☰
+        </button>
+
+        <!-- Menu Items -->
+        <div class="flex md:flex-row flex-row-reverse">
+          <ul
+            id="menu"
+            class="hidden md:flex text-orange-500 md:space-x-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent p-4 md:p-0 flex-col md:flex-row font-bold"
+          >
+            <li>
+              <a
+                href="#"
+                class="block p-2 underline decoration-2 underline-offset-[20px]"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                >Blog</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                >FAQ</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a
+                href="src/page/movie.html"
+                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                >Movies</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Search Input -->
+        <input
+          type="text"
+          id="search"
+          placeholder="Search movies..."
+          class="p-2 text-white rounded-md border border-gray-500"
+        />
+      </div>
+    </nav>
     <div class="pic w-full h-auto">
       <img
         class="w-[100%] object-cover h-auto max-w-full"
         src="/src/asset/pic-what's-new.png"
         alt=""
       />
+    </div>
+
+    <!-- Movie Search Results -->
+    <div
+      id="results"
+      class="absolute top-24 left-0 w-full bg-gray-900 p-4 hidden z-30"
+    >
+      <div
+        class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      ></div>
     </div>
     <div>
       <div
@@ -58,6 +133,63 @@
     </div>
     <script>
       const API_KEY = "38ce8edf86ce46dd2cc6a4d56763297a";
+      const searchInput = document.getElementById("search");
+      const resultsDiv = document.getElementById("results");
+      const resultsGrid = resultsDiv.querySelector("div");
+      const menuToggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("menu");
+      const moviesContainer = document.getElementById("movies");
+
+      // Toggle mobile menu
+      menuToggle.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      // Search functionality
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim();
+        if (query.length > 2) {
+          // Construct the API URL for searching movies
+          const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`;
+
+          fetch(searchUrl)
+            .then((response) => response.json())
+            .then((data) => {
+              // Check if there are any search results
+              if (data.results.length) {
+                // Generate HTML for each movie result
+                resultsGrid.innerHTML = data.results
+                  .map(
+                    (movie) => `
+            <a href="../page/watch-movie.html?id=${movie.id}" class="block">
+              <div class="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
+                  alt="${movie.title}" 
+                  class="w-full h-64 object-cover rounded-md">
+                <h2 class="mt-2 font-bold line-clamp-1">${movie.title}</h2>
+                <p class="text-sm text-gray-400">${movie.release_date}</p>
+              </div>
+            </a>
+          `
+                  )
+                  .join("");
+              } else {
+                // Display a message if no results are found
+                resultsGrid.innerHTML = `<p class="text-center text-gray-400">No results found</p>`;
+              }
+
+              // Show the search results
+              resultsDiv.classList.remove("hidden");
+            })
+            .catch((error) => {
+              console.error("Error fetching movies:", error);
+              // Consider adding more user-friendly error handling here
+            });
+        } else {
+          // Hide search results if the query is too short
+          resultsDiv.classList.add("hidden");
+        }
+      });
       fetch(
         `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
       )

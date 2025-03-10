@@ -3,24 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home page</title>
+
+    <title>Movie page | HVPL Movies</title>
+
     <link rel="stylesheet" href="../style/output.css" />
   </head>
+
   <body class="bg-gray-900">
     <!-- Navigation Bar -->
+
     <nav class="bg-black p-4 z-50 sticky">
       <div class="container mx-auto flex flex-row justify-between items-center">
         <!-- Logo -->
+
         <a href="#" class="text-xl font-bold">
           <img src="../asset/img/logo.png" alt="" class="max-w-[50%]" />
         </a>
 
         <!-- Hamburger Menu (Mobile) -->
+
         <button id="menu-toggle" class="md:hidden text-white text-2xl pr-4">
           ☰
         </button>
 
         <!-- Menu Items -->
+
         <div class="flex md:flex-row flex-row-reverse">
           <ul
             id="menu"
@@ -33,6 +40,7 @@
                 >Home</a
               >
             </li>
+
             <li>
               <a
                 href="#"
@@ -40,6 +48,7 @@
                 >Blog</a
               >
             </li>
+
             <li>
               <a
                 href="#"
@@ -47,6 +56,7 @@
                 >FAQ</a
               >
             </li>
+
             <li>
               <a
                 href="#"
@@ -54,6 +64,7 @@
                 >Contact</a
               >
             </li>
+
             <li>
               <a
                 href="#"
@@ -65,6 +76,7 @@
         </div>
 
         <!-- Search Input -->
+
         <input
           type="text"
           id="search"
@@ -75,6 +87,7 @@
     </nav>
 
     <!-- Movie Search Results -->
+
     <div
       id="results"
       class="absolute top-24 left-0 w-full bg-gray-900 p-4 hidden z-30"
@@ -85,6 +98,7 @@
     </div>
 
     <!-- Background Video Section -->
+
     <div class="relative h-screen w-full bg-black">
       <video
         autoplay
@@ -93,6 +107,7 @@
         class="absolute inset-0 w-full h-full object-cover"
       >
         <source src="../asset/Video/movie_hero_section.mp4" type="video/mp4" />
+
         Your browser does not support the video tag.
       </video>
 
@@ -101,12 +116,15 @@
       ></div>
 
       <!-- Hero Section -->
+
       <div class="absolute top-1/3 left-10 text-white">
         <h1 class="text-5xl font-bold">Go ahead, stream free</h1>
+
         <p class="mt-4 text-lg max-w-lg">
           With Plex, you can watch over 20,000 free movies and shows, plus Live
           TV on almost any device. What are you waiting for?
         </p>
+
         <button
           class="mt-6 bg-yellow-500 px-6 py-3 text-black font-bold rounded-full"
         >
@@ -114,18 +132,64 @@
         </button>
       </div>
     </div>
+    <h1 class="text-3xl px-6 pt-3 font-bold mb-5 text-white">
+      <a
+        href="../page/living-page.html"
+        class="underline underline-offset-[10px] pb-2"
+      >
+        Living Movies
+      </a>
+    </h1>
 
-    <div class="max-w-full p-5 overflow-x-auto">
-      <h1 class="text-3xl font-bold mb-5 text-white">
-        <a
-          href="../page/trending-page.html"
-          class="underline underline-offset-[10px]"
-        >
-          Living Movies ->
-        </a>
-      </h1>
-
+    <div
+      class="max-w-full p-5 overflow-x-auto"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
       <div id="movies" class="flex space-x-6 w-max"></div>
+    </div>
+    <h1 class="text-3xl px-6 font-bold mb-5 text-white">
+      <a href="popular-page.html" class="underline underline-offset-[10px]">
+        Popular
+      </a>
+    </h1>
+    <div
+      class="max-w-full p-5 overflow-x-auto"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
+      <div id="pop" class="flex space-x-6 w-max"></div>
+    </div>
+    <h1 class="text-3xl px-6 font-bold mb-5 text-white">
+      <a href="trending-page.html" class="underline underline-offset-[10px]">
+        Trending
+      </a>
+    </h1>
+    <div
+      class="max-w-full p-5 overflow-x-auto"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
+      <div id="tren" class="flex space-x-6 w-max"></div>
+    </div>
+    <h1 class="text-3xl px-6 font-bold mb-5 text-white">
+      <a href="toprate-page.html" class="underline underline-offset-[10px]">
+        Top rate
+      </a>
+    </h1>
+    <div
+      class="max-w-full p-5 overflow-x-auto"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
+      <div id="up" class="flex space-x-6 w-max"></div>
+    </div>
+    <h1 class="text-3xl px-6 font-bold mb-5 text-white">
+      <a href="upcoming-page.html" class="underline underline-offset-[10px]">
+        Up coming
+      </a>
+    </h1>
+    <div
+      class="max-w-full p-5 overflow-x-auto"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
+      <div id="top" class="flex space-x-6 w-max"></div>
     </div>
 
     <script src="../script/movie-page.js" defer></script>

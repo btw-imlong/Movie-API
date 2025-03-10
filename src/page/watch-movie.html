@@ -7,46 +7,106 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-900 text-white">
-    <!-- Back Button -->
-    <a href="../../index.html" class="p-4 block text-gray-400 hover:text-white"
-      >⬅ Back to Search</a
+    <a
+      href="../../index.html"
+      class="p-4 block text-gray-400 text-xl font-bold hover:text-white"
     >
+      ⬅ Back</a
+    >
+    <div id="backgroundForLong" class="bg-cover bg-no-repeat bg-fixed">
+      <div class="container mx-auto p-6">
+        <div
+          id="movie-container"
+          class="w-[90%] mx-auto flex flex-col md:flex-row gap-6"
+        ></div>
+      </div>
+    </div>
 
-    <!-- Movie Details Container -->
-    <div class="container mx-auto p-6">
-      <div id="movie-container" class="flex flex-col md:flex-row gap-6"></div>
+    <h1 class="text-3xl px-6 font-bold mb-5 text-white pt-4">
+      <a href="popular-page.html" class="underline underline-offset-[10px]">
+        Recommend Popular Movie
+      </a>
+    </h1>
+    <div
+      class="max-w-full p-5 overflow-x-auto"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
+      <div id="recom" class="flex space-x-6 w-max"></div>
     </div>
 
     <script>
-      const API_KEY = "38ce8edf86ce46dd2cc6a4d56763297a"; // Replace with your TMDB API key
-      const urlParams = new URLSearchParams(window.location.search);
-      const movieId = urlParams.get("id");
-      const movieContainer = document.getElementById("movie-container");
-
+      const apiKey = "38ce8edf86ce46dd2cc6a4d56763297a";
+      const params = new URLSearchParams(window.location.search);
+      const movieId = params.get("id");
+      const container = document.getElementById("movie-container");
       if (movieId) {
-        fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
-        )
+        fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
           .then((response) => response.json())
           .then((movie) => {
-            movieContainer.innerHTML = `
-              <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
-                   alt="${movie.title}" 
-                   class="w-full md:w-1/3 object-cover rounded-lg">
+            fetch(
+              `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`
+            )
+              .then((response) => response.json())
+              .then((videos) => {
+                const trailer = videos.results.find(
+                  (video) =>
+                    video.type === "Trailer" && video.site === "YouTube"
+                );
+                let trailerHtml = "";
+                if (trailer) {
+                  trailerHtml = `<div class="mt-4 mb-4"><h2 class="text-2xl font-semibold mb-2">Trailer</h2><div class="aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>`;
+                } else {
+                  trailerHtml = `<p class="text-gray-400 mt-4 mb-4">No trailer.</p>`;
+                }
+                const backgroundForLong =
+                  document.getElementById("backgroundForLong");
+                backgroundForLong.style.backgroundImage = `linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://image.tmdb.org/t/p/original${
+                  movie.backdrop_path || movie.poster_path
+                })`;
 
-              <div class="flex flex-col justify-center">
-                <h1 class="text-3xl font-bold  ">${movie.title}</h1>
-                <p class="text-gray-400">${movie.release_date}</p>
-                <p class="mt-4">${movie.overview}</p>
-              </div>
-            `;
+                container.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" class="w-full h-[80vh] md:w-1/3 object-cover rounded-lg"><div class="md:w-[60%] space-y-10 flex flex-col justify-center"><div><h1 class="text-3xl font-bold  ">${movie.title}</h1><p class="text-gray-400">${movie.release_date}</p></div>${trailerHtml}<p class="mt-2">${movie.overview}</p>  <button
+          class="md:w-[20vw] mt-6 bg-yellow-500 px-6 py-3 text-black font-bold rounded-full"
+        >
+          <a href="https://tv.apple.com/">Watch now</a>
+        </button></div>`;
+              })
+              .catch(
+                () =>
+                  (container.innerHTML = `<p class="text-center text-gray-400">Trailer error.</p>`)
+              );
           })
-          .catch((error) =>
-            console.error("Error fetching movie details:", error)
+          .catch(
+            () =>
+              (container.innerHTML = `<p class="text-center text-gray-400">Movie error.</p>`)
           );
       } else {
-        movieContainer.innerHTML = `<p class="text-center text-gray-400">Movie not found.</p>`;
+        container.innerHTML = `<p class="text-center text-gray-400">Not found.</p>`;
       }
+
+      const recoment = fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const recom = document.getElementById("recom");
+          recom.innerHTML = "";
+
+          data.results.forEach((res) => {
+            const recomentCard = document.createElement("div");
+            const posterPop = `https://image.tmdb.org/t/p/w500${res.poster_path}`;
+
+            recomentCard.innerHTML = ` <div class="md:w-[15vw] w-40 sm:w-30">
+         <a href="../page/watch-movie.html?id=${res.id}" class="block">
+             <img src="${posterPop}" alt="${res.title}" class="w-full rounded-md h-64 object-cover">
+
+      <div class="p-4 w-full">
+        <h2 class="text-lg text-white font-bold line-clamp-1">${res.title}</h2>
+        <p class="text-sm text-gray-100">Rating: ${res.vote_average}</p>
+      </div>
+        </div>`;
+            recom.appendChild(recomentCard);
+          });
+        });
     </script>
   </body>
 </html>
