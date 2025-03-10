@@ -6,25 +6,88 @@
     <title>link what's new</title>
     <link rel="stylesheet" href="/src/style/output.css" />
   </head>
-  <body>
-    <div class="pic w-full h-[100vh] relative">
+  <body class="font-Libre Caslon Text bg-[#2D2C2C]">
+    <div class="pic w-full h-auto">
       <img
         class="w-[100%] object-cover h-auto max-w-full"
         src="/src/asset/pic-what's-new.png"
         alt=""
       />
     </div>
-    <div class="youtube w-[200px] h-[400px] bg-blue-900">
-      <h1
-        class="text text-5xl text-black font-extrabold max-sm:text-xl max-sm: p-5"
+    <div>
+      <div
+        class="youtube w-full h-auto px-10 max-sm:px-0 md:mt-[30px] max-sm:mt-[20px]"
       >
-        what is new on Pluto TV, Tubi, and more
+        <h1 class="text text-4xl text-white font-extrabold max-sm:text-xl p-2">
+          what is new on Pluto TV, Tubi, and more
+        </h1>
+        <p class="text text-white max-sm:text-[10px] p-2">
+          Select your favorite streaming services to discover more, search
+          faster, and get curated recommendations all without ever leaving Plex.
+          Connect with friends to see who is watching what, where.
+        </p>
+      </div>
+      <div class="pic h-auto w-[900px] max-w-screen ml-12 max-sm:ml-0">
+        <a href="https://www.youtube.com/watch?v=kFtuhsj5ors">
+          <img
+            class="w-[100%] object-cover h-auto max-w-full"
+            src="/src/asset/pic2.png"
+            alt=""
+          />
+        </a>
+      </div>
+    </div>
+    <div class="youtube w-full h-auto px-10 mt-10 max-sm:px-0 max-sm:mt-5">
+      <h1 class="text text-4xl text-white font-extrabold max-sm:text-xl p-2">
+        Give Me the Short Version
       </h1>
-      <p class="text text-black max-sm:text-[10px] m">
-        Select your favorite streaming services to discover more, search faster,
-        and get curated recommendations all without ever leaving Plex. Connect
-        with friends to see who is watching what, where.
+      <p class="text text-white max-sm:text-[10px] p-2">
+        Starting this week, when you log in on any of our major platforms,
+        including Roku, Apple TV, Android TV, Amazon Fire TV, iOS and Android
+        mobile devices, smart TVs, game consoles, and the web app, you’ll be
+        given an overview of Discover Together, why you should give it a spin,
+        and what settings will give you the best experience. Don’t worry there
+        won’t be a test later.
       </p>
     </div>
+    <div
+      class="max-w-full p-5 overflow-x-auto"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
+      <div id="movies" class="flex space-x-6 w-max"></div>
+    </div>
+    <script>
+      const API_KEY = "38ce8edf86ce46dd2cc6a4d56763297a";
+      fetch(
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const recent = document.getElementById("movies");
+          recent.innerHTML = "";
+
+          data.results.forEach((popmovie) => {
+            const popCard = document.createElement("div");
+            popCard.classList.add("rounded-md");
+
+            const posterPop = popmovie.poster_path
+              ? `https://image.tmdb.org/t/p/w500${popmovie.poster_path}`
+              : "/src/asset/fallback.png"; // Add your own fallback image path
+
+            popCard.innerHTML = `
+              <div class="md:w-[15vw] w-40 sm:w-30">
+               <a href="../page/watch-movie.html?id=${popmovie.id}" class="block">
+                   <img src="${posterPop}" alt="${popmovie.title}" class="w-full rounded-md h-64 object-cover">
+
+            <div class="p-4 w-full">
+              <h2 class="text-lg text-white font-bold line-clamp-1">${popmovie.title}</h2>
+              <p class="text-sm text-gray-100">Rating: ${popmovie.vote_average}</p>
+            </div>
+              </div>`;
+            recent.appendChild(popCard);
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
   </body>
 </html>
