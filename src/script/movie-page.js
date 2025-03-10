@@ -145,7 +145,7 @@ function fetchMovies() {
       d="M4.248 19C3.22 15.77 5.275 8.232 12.466 8.232V6.079a1.025 1.025 0 0 1 1.644-.862l5.479 4.307a1.108 1.108 0 0 1 0 1.723l-5.48 4.307a1.026 1.026 0 0 1-1.643-.861v-2.154C5.275 13.616 4.248 19 4.248 19Z"
     />
   </svg>
-</p>;
+</p>
 
                 </div>
             </a>
@@ -193,7 +193,7 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
   .catch((error) => console.error("Error:", error));
 
 const fetchTrending = fetch(
-  `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
+  `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
 )
   .then((response) => response.json())
   .then((trend) => {

@@ -115,13 +115,8 @@ fetchMovies();
 
 const movieContainer2 = document.getElementById("movie-container2");
 
-fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    return response.json();
-  })
+fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
+  .then((response) => response.json())
   .then((data) => {
     // Clear the container
     movieContainer2.innerHTML = "";
