@@ -35,9 +35,6 @@
     );
   }
 }
-.font{
-  font-family: Libre Caslon Text;
-}
 @layer base {
   *, ::after, ::before, ::backdrop, ::file-selector-button {
     box-sizing: border-box;
@@ -378,9 +375,6 @@
   .mr-5 {
     margin-right: calc(var(--spacing) * 5);
   }
-  .mr-10 {
-    margin-right: calc(var(--spacing) * 10);
-  }
   .mr-15 {
     margin-right: calc(var(--spacing) * 15);
   }
@@ -494,9 +488,6 @@
   }
   .min-h-screen {
     min-height: 100vh;
-  }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
