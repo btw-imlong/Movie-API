@@ -8,62 +8,63 @@
   </head>
   <body class="bg-gray-900 text-white relative">
     <!-- Navigation Bar -->
-    <nav class="bg-gray-800 p-4 relative z-50">
-      <div class="container mx-auto flex justify-between items-center">
-        <!-- Logo -->
-        <a href="#" class="text-xl font-bold">
-          <img src="../asset/img/logo.png" alt="" class="max-w-[50%]" />
-        </a>
-
-        <!-- Hamburger Menu (Mobile) -->
-        <div class="flex md:flex-row flex-row-reverse">
+    <nav class="bg-black p-4 z-50 sticky">
+        <div class="container mx-auto flex flex-row justify-between items-center">
+          <!-- Logo -->
+          <a href="#" class="text-xl font-bold">
+            <img src="src/asset/img/logo.png" alt="" class="max-w-[50%]" />
+          </a>
+  
+          <!-- Hamburger Menu (Mobile) -->
           <button id="menu-toggle" class="md:hidden text-white text-2xl pr-4">
             ☰
           </button>
-
+  
           <!-- Menu Items -->
-          <ul
-            id="menu"
-            class="hidden md:flex md:space-x-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent p-4 md:p-0 flex-col md:flex-row font-bold"
-          >
-            <li>
-              <a
-                href="#"
-                class="block p-2 underline decoration-2 underline-offset-[20px]"
-                >Home</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
-                >Blog</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
-                >FAQ</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
-                >Contact</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
-                >Movies</a
-              >
-            </li>
-
-            <!-- Search Input (Inside Menu) -->
-          </ul>
+          <div class="flex md:flex-row flex-row-reverse">
+            <ul
+              id="menu"
+              class="hidden md:flex text-orange-500 md:space-x-6 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent p-4 md:p-0 flex-col md:flex-row font-bold"
+            >
+              <li>
+                <a
+                  href="#"
+                  class="block p-2 underline decoration-2 underline-offset-[20px]"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                  >Contact</a
+                >
+              </li>
+              <li>
+                <a
+                  href="src/page/movie.html"
+                  class="block p-2 hover:underline decoration-2 underline-offset-[20px]"
+                  >Movies</a
+                >
+              </li>
+            </ul>
+          </div>
+  
+          <!-- Search Input -->
           <input
             type="text"
             id="search"
@@ -71,19 +72,17 @@
             class="p-2 text-white rounded-md border border-gray-500"
           />
         </div>
-      </div>
-    </nav>
-
-    <!-- Movie Results -->
-    <div
-      id="results"
-      class="absolute top-24 left-0 w-full bg-gray-900 p-4 hidden z-30"
-    >
+      </nav>
+  
+      <!-- Movie Search Results -->
       <div
-        class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      ></div>
-    </div>
-
+        id="results"
+        class="absolute top-24 left-0 w-full bg-gray-900 p-4 hidden z-30"
+      >
+        <div
+          class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        ></div>
+      </div>
     <script>
       const API_KEY = "38ce8edf86ce46dd2cc6a4d56763297a"; // Replace with your TMDB API key
       const searchInput = document.getElementById("search");
