@@ -143,31 +143,58 @@
         class="grid md:grid-cols-6 grid-cols-2 gap-4"
       ></div>
     </div>
-    <div class="pic w-full h-[100vh] bg-black relative">
+    <div class="pic w-full md:h-screen bg-black relative">
       <img
-        class="w-[100%] object-cover h-auto max-w-full"
-        src="/src/asset/pic.png"
-        alt=""
+        class="w-full h-auto md:h-screen object-cover"
+        src="src/asset/pic.png"
+        alt="Streaming background"
       />
-      <div>
+      <div
+        class="absolute inset-0 flex flex-col justify-center gap-6 px-5 md:px-20"
+      >
+        <!-- Heading -->
         <h1
-          class="text absolute top-[25%] left-[5%] text-4xl text-white font-extrabold max-sm:text-xl max-sm:top-[5%]"
+          class="text-white font-extrabold text-xl sm:text-3xl md:text-5xl leading-snug"
         >
           what is new <br />on Pluto TV, <br />Tubi, and more
         </h1>
+
+        <!-- Paragraph -->
         <p
-          class="text absolute top-[50%] left-[5%] text-lg text-white max-sm:text-[10px] max-sm:top-[18%]"
+          class="text-white text-xs sm:text-sm md:text-lg leading-relaxed max-w-xl"
         >
-          Select your favorite streaming services to discover <br />more, search
-          faster, and get curated recommendations <br />all without ever leaving
-          Plex. Connect with friends to <br />see who’s watching what, where.
+          Select your favorite streaming services to discover more, search
+          faster, and get curated recommendations — all without ever leaving
+          Plex. Connect with friends to see who’s watching what, where.
         </p>
-        <button
-          class="buton px-6 text-black font-bold bg-orange-500 text-center rounded-full text-2xl absolute top-[75%] left-[5%] max-sm:text-[10px] max-sm:top-[28%] max-sm:w-[60px] py-3 max-sm:py-1"
+
+        <!-- Button -->
+        <a
+          href="src/page/link-what's-new.html"
+          class="bg-orange-500 text-black font-bold rounded-full text-xs sm:text-base md:text-2xl px-4 sm:px-6 py-2 sm:py-3 w-fit"
         >
-          <a href="src/page/link-what's-new.html">Read me</a>
-        </button>
+          Read me
+        </a>
       </div>
+    </div>
+
+    <div class="w-full h-[500px] bg-zinc-900 font">
+      <div class="md:w-[900px] h-[400px] mx-auto">
+        <h3 class="text-white text-3xl text-center font-bold py-4">
+          Take Plex everywhere
+        </h3>
+        <p class="text-2xl text-white text-center font-bold">
+          Watch free anytime, anywhere, on almost any device.
+        </p>
+        <div class="md:w-[600px] h-[300px] mx-auto mt-2">
+          <img src="src/asset/img/screenshot1.png" alt="" />
+          <img src="src/asset/img/screenshot2.png" alt="" />
+          <img src="src/asset/img/screenshot-3.png" alt="" />
+        </div>
+      </div>
+      <p class="text-center py-8 text-2xl text-white">
+        See the full list of supported devices
+      </p>
     </div>
     <script src="src/script/main.js" defer></script>
   </body>

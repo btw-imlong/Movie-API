@@ -78,10 +78,11 @@ function fetchMovies() {
         movieElement.classList.add("rounded-md"); // Add a rounded corners class
 
         // Generate the HTML for the movie element
+        const posterPop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
         movieElement.innerHTML = `
           <div class="md:w-[15vw] w-40">
             <a href="../page/watch-movie.html?id=${movie.id}" class="block">
-              <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
+              <img src="${posterPop}" 
                 alt="${movie.title}" 
                 class="rounded-md h-[20vh] w-full object-cover mb-2" />
 
