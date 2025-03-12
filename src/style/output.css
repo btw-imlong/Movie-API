@@ -429,6 +429,9 @@
       max-width: 96rem !important;
     }
   }
+  .m-7 {
+    margin: calc(var(--spacing) * 7);
+  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -584,6 +587,9 @@
   }
   .h-7 {
     height: calc(var(--spacing) * 7);
+  }
+  .h-50 {
+    height: calc(var(--spacing) * 50);
   }
   .h-64 {
     height: calc(var(--spacing) * 64);
@@ -1611,6 +1617,9 @@
   }
   .object-top {
     object-position: top;
+  }
+  .p-0 {
+    padding: calc(var(--spacing) * 0);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
