@@ -22,6 +22,7 @@
     --color-gray-700: oklch(0.373 0.034 259.733);
     --color-gray-800: oklch(0.278 0.033 256.848);
     --color-gray-900: oklch(0.21 0.034 264.665);
+    --color-gray-950: oklch(0.13 0.028 261.692);
     --color-zinc-900: oklch(0.21 0.006 285.885);
     --color-stone-800: oklch(0.268 0.007 34.298);
     --color-black: #000;
@@ -595,6 +596,9 @@
   }
   .h-\[60px\] {
     height: 60px;
+  }
+  .h-\[70vh\] {
+    height: 70vh;
   }
   .h-\[80vh\] {
     height: 80vh;
@@ -1394,6 +1398,9 @@
   .bg-black {
     background-color: var(--color-black);
   }
+  .bg-black\/55 {
+    background-color: color-mix(in oklab, var(--color-black) 55%, transparent);
+  }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
   }
@@ -1402,6 +1409,9 @@
   }
   .bg-gray-900 {
     background-color: var(--color-gray-900);
+  }
+  .bg-gray-950 {
+    background-color: var(--color-gray-950);
   }
   .bg-orange-500 {
     background-color: var(--color-orange-500);
