@@ -606,6 +606,9 @@
   .h-\[60px\] {
     height: 60px;
   }
+  .h-\[70vh\] {
+    height: 70vh;
+  }
   .h-\[80vh\] {
     height: 80vh;
   }
@@ -1403,6 +1406,9 @@
   }
   .bg-black {
     background-color: var(--color-black);
+  }
+  .bg-black\/55 {
+    background-color: color-mix(in oklab, var(--color-black) 55%, transparent);
   }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
