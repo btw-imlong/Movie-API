@@ -32,7 +32,6 @@
     --color-gray-900: oklch(0.21 0.034 264.665);
     --color-gray-950: oklch(0.13 0.028 261.692);
     --color-zinc-900: oklch(0.21 0.006 285.885);
-    --color-stone-800: oklch(0.268 0.007 34.298);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -299,6 +298,9 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
+  .top-1 {
+    top: calc(var(--spacing) * 1);
+  }
   .top-1\/2 {
     top: calc(1/2 * 100%);
   }
@@ -494,6 +496,9 @@
   .mt-\[-200px\] {
     margin-top: -200px;
   }
+  .mt-\[200px\] {
+    margin-top: 200px;
+  }
   .mr-2 {
     margin-right: calc(var(--spacing) * 2);
   }
@@ -683,6 +688,9 @@
   .min-h-screen {
     min-height: 100vh;
   }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
+  }
   .w-1\/2 {
     width: calc(1/2 * 100%);
   }
@@ -847,6 +855,10 @@
   .translate-full {
     --tw-translate-x: 100%;
     --tw-translate-y: 100%;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .-translate-y-1\/2 {
@@ -1511,9 +1523,6 @@
   }
   .bg-red-600 {
     background-color: var(--color-red-600);
-  }
-  .bg-stone-800 {
-    background-color: var(--color-stone-800);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -2600,16 +2609,6 @@
       top: 28%;
     }
   }
-  .max-sm\:top-\[36\%\] {
-    @media (width < 40rem) {
-      top: 36%;
-    }
-  }
-  .max-sm\:top-\[50\%\] {
-    @media (width < 40rem) {
-      top: 50%;
-    }
-  }
   .max-sm\:mt-5 {
     @media (width < 40rem) {
       margin-top: calc(var(--spacing) * 5);
@@ -2787,9 +2786,29 @@
       margin-top: 30px;
     }
   }
+  .md\:mt-\[30vh\] {
+    @media (width >= 48rem) {
+      margin-top: 30vh;
+    }
+  }
+  .md\:mt-\[50vh\] {
+    @media (width >= 48rem) {
+      margin-top: 50vh;
+    }
+  }
+  .md\:mt-\[60vh\] {
+    @media (width >= 48rem) {
+      margin-top: 60vh;
+    }
+  }
   .md\:mt-\[70vh\] {
     @media (width >= 48rem) {
       margin-top: 70vh;
+    }
+  }
+  .md\:mt-\[200px\] {
+    @media (width >= 48rem) {
+      margin-top: 200px;
     }
   }
   .md\:ml-\[60px\] {
