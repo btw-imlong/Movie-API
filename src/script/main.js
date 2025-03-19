@@ -60,7 +60,9 @@ async function fetchMovies() {
       movieElement.classList.add("rounded-md");
 
       movieElement.innerHTML = `
-       <a href="src/page/watch-movie.html?id=${movie.id}" class="block">
+       <a href="src/page/watch-movie.html?id=${
+         movie.id
+       }" class="block min-w-[150px]">
             <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
              alt="${movie.title}" 
              class="rounded-md h-[20vh] w-full object-cover mb-2" />
@@ -111,34 +113,32 @@ async function fetchMovies() {
 }
 
 // Call the function to load now playing movies when the page loads
-fetchMovies();
+fetchMovies(); // Replace with your actual TMDB API key
 
 const movieContainer2 = document.getElementById("movie-container2");
 
 fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
   .then((response) => response.json())
   .then((data) => {
-    // Clear the container
     movieContainer2.innerHTML = "";
 
-    // Limit to 14 movies using slice
     data.results.slice(0, 12).forEach((code) => {
       const movieCard = document.createElement("div");
-      movieCard.className = " overflow-hidden";
+      movieCard.className = "min-w-[150px] flex-shrink-0 overflow-hidden";
 
       const posterPath = code.poster_path
         ? `https://image.tmdb.org/t/p/w500${code.poster_path}`
         : "https://via.placeholder.com/200x300?text=No+Image";
 
       movieCard.innerHTML = `
-      <a href="src/page/watch-movie.html?id=${code.id}" class="block">
-             <img src="${posterPath}" alt="${code.title}" class="w-full h-64 object-cover">
-    
-      <div class="p-4">
-        <h2 class="text-lg text-white font-bold line-clamp-1">${code.title}</h2>
-        <p class="text-sm text-gray-100">Rating: ${code.vote_average}</p>
-      </div>
-    `;
+        <a href="src/page/watch-movie.html?id=${code.id}" class="block md:w-auto w-[150px] ">
+          <img src="${posterPath}" alt="${code.title}" class="w-full  h-64 object-cover">
+          <div class="p-4">
+            <h2 class="text-lg text-white font-bold line-clamp-1">${code.title}</h2>
+            <p class="text-sm text-gray-100">Rating: ${code.vote_average}</p>
+          </div>
+        </a>
+      `;
 
       movieContainer2.appendChild(movieCard);
     });
@@ -158,19 +158,21 @@ fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`)
 
     data.results.slice(0, 12).forEach((coming) => {
       const comingCard = document.createElement("div");
-      comingCard.className = "overflow-hidden";
+      comingCard.className = "min-w-[150px] flex-shrink-0 overflow-hidden";
 
-      // Use coming.poster_path for the image source
+      const posterPath = coming.poster_path
+        ? `https://image.tmdb.org/t/p/w500${coming.poster_path}`
+        : "https://via.placeholder.com/200x300?text=No+Image";
+
       comingCard.innerHTML = `
-          <a href="src/page/watch-movie.html?id=${coming.id}" class="block">
-            <img src="https://image.tmdb.org/t/p/w500${coming.poster_path}" 
-                 alt="${coming.title}" 
-                 class="w-full h-64 object-cover">
-          </a>
+        <a href="src/page/watch-movie.html?id=${coming.id}" class="block md:w-auto w-[150px]">
+          <img src="${posterPath}" alt="${coming.title}" class="w-full h-64 object-cover">
           <div class="p-4">
             <h2 class="text-lg text-white font-bold line-clamp-1">${coming.title}</h2>
             <p class="text-sm text-gray-100">Rating: ${coming.vote_average}</p>
-          </div>`;
+          </div>
+        </a>
+      `;
 
       upcoming.appendChild(comingCard);
     });
